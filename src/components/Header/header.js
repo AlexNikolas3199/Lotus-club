@@ -1,13 +1,17 @@
-import { Button, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { ScrollView, View } from 'react-native'
 import HeaderButton from './headerButton'
+import { useNavigation } from '@react-navigation/native'
+import StyleSheet from 'react-native-media-query'
 
-const Header = ({ navigation }) => {
+const Header = () => {
+  const navigation = useNavigation()
   return (
     <ScrollView
       horizontal
       showsHorizontalScrollIndicator={false}
       contentContainerStyle={{ alignItems: 'flex-start' }}
       style={styles.header}
+      dataSet={{ media: ids.header }}
     >
       <View style={{ width: 12 }} />
       <HeaderButton title='Главная' onPress={() => navigation.navigate('Home')} />
@@ -19,12 +23,19 @@ const Header = ({ navigation }) => {
   )
 }
 
-const styles = StyleSheet.create({
+const { ids, styles } = StyleSheet.create({
   header: {
-    paddingTop: 5,
+    // paddingTop: 5,
     marginBottom: 23,
     flexGrow: 0,
     flexShrink: 0,
+    '@media (min-width: 800px)': {
+      justifyContent: 'center',
+      marginBottom: 15,
+      paddingVertical: 5,
+      borderBottomWidth: 1,
+      borderColor: '#fff',
+    },
   },
 })
 

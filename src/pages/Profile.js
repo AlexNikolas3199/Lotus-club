@@ -1,32 +1,27 @@
 import { ScrollView, StyleSheet, Text, View } from 'react-native'
-import Header from '../components/Header/header'
 import MainButton from '../components/Main/mainButton'
-import MainWrapper from '../components/Main/mainWrapper'
 import Trening from '../components/Trening'
 
 const Profile = ({ navigation }) => {
   return (
-    <MainWrapper>
-      <Header navigation={navigation} />
-      <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{ flexGrow: 1 }} style={styles.main}>
-        <View style={styles.profilewrapper}>
-          <View style={styles.icon} />
-          <Text style={styles.fio}>Алеша Николаев</Text>
-        </View>
-        <MainButton title='Повысть рейтинг' onPress={() => navigation.navigate('Home')} />
-        <View style={styles.trenings}>
-          <Trening />
-          <Trening />
-        </View>
-        <MainButton title='Задать вопрос' onPress={() => navigation.navigate('Home')} />
-        <View style={styles.appointment}>
-          <Text style={styles.h}>Ближайшее свидание</Text>
-          <Text style={styles.date}>Будет 11.08.2022</Text>
-        </View>
-        <MainButton title='Услуги' onPress={() => navigation.navigate('Home')} />
-        <View style={{ height: 7.5 }} />
-      </ScrollView>
-    </MainWrapper>
+    <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{ flexGrow: 1 }} style={styles.main}>
+      <View style={styles.profilewrapper}>
+        <View style={styles.icon} />
+        <Text style={styles.fio}>Алеша Николаев</Text>
+      </View>
+      <MainButton title='Повысть рейтинг' onPress={() => navigation.navigate('Home')} />
+      <View style={styles.trenings}>
+        <Trening />
+        <Trening />
+      </View>
+      <MainButton title='Задать вопрос' onPress={() => navigation.navigate('Home')} />
+      <View style={styles.appointment}>
+        <Text style={styles.h}>Ближайшее свидание</Text>
+        <Text style={styles.date}>Будет 11.08.2022</Text>
+      </View>
+      <MainButton title='Услуги' onPress={() => navigation.navigate('Home')} />
+      <View style={{ height: 7.5 }} />
+    </ScrollView>
   )
 }
 

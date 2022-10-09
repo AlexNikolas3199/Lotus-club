@@ -1,25 +1,29 @@
-import { Text, StyleSheet, TouchableOpacity, View } from 'react-native'
+import { Text, TouchableOpacity, View } from 'react-native'
+import StyleSheet from 'react-native-media-query'
 
-const MainButton = ({ title, onPress, isGray, myStyle, myTextStyle, leftIcon }) => {
-  let buttonStyle = styles.button
-  let textStyle = styles.buttonText
-  if (isGray) {
-    buttonStyle = [styles.button, styles.buttonGrey]
-    textStyle = { ...styles.buttonText, color: 'gray' }
-  }
+const MainButton = ({ title, onPress, myStyle, myTextStyle }) => {
   return (
-    <View style={styles.buttonWrapper}>
-      <TouchableOpacity activeOpacity={0.4} style={[buttonStyle, myStyle]} onPress={onPress}>
-        {leftIcon}
-        <Text style={{ ...textStyle, ...myTextStyle }}>{title}</Text>
+    <View dataSet={{ media: ids.buttonWrapper }} style={styles.buttonWrapper}>
+      <TouchableOpacity
+        dataSet={{ media: ids.button }}
+        activeOpacity={0.4}
+        style={[styles.button, myStyle]}
+        onPress={onPress}
+      >
+        <Text style={{ ...styles.buttonText, ...myTextStyle }} dataSet={{ media: ids.buttonText }}>
+          {title}
+        </Text>
       </TouchableOpacity>
     </View>
   )
 }
 
-const styles = StyleSheet.create({
+const { ids, styles } = StyleSheet.create({
   buttonWrapper: {
     width: '100%',
+    '@media (min-width: 800px)': {
+      alignItems: 'center',
+    },
   },
   button: {
     backgroundColor: '#fff',
@@ -32,11 +36,6 @@ const styles = StyleSheet.create({
     borderColor: '#313131',
     borderWidth: 2,
     borderRadius: 10,
-  },
-  buttonGrey: {
-    backgroundColor: 'rgba(0,0,0,0)',
-    borderWidth: 1,
-    borderColor: 'grey',
   },
   buttonText: {
     color: '#313131',

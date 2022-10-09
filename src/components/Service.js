@@ -1,14 +1,17 @@
 import { useState } from 'react'
-import { ImageBackground, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { ImageBackground, Text, TouchableOpacity, View } from 'react-native'
 import MainButton from './Main/mainButton'
+import StyleSheet from 'react-native-media-query'
 
 const Service = ({ title, img }) => {
   const [isClick, setIsClick] = useState(false)
   return (
-    <View style={styles.box}>
+    <View dataSet={{ media: ids.box }} style={styles.box}>
       <TouchableOpacity activeOpacity={0.5} onPress={() => setIsClick(!isClick)}>
         <ImageBackground source={img} resizeMode='cover' borderRadius={12} style={styles.image}>
-          <Text style={styles.text}>{title}</Text>
+          <Text dataSet={{ media: ids.head }} style={styles.head}>
+            {title}
+          </Text>
         </ImageBackground>
       </TouchableOpacity>
       <View style={{ height: isClick ? 'auto' : 0, margin: 0, paddingHorizontal: 15 }}>
@@ -25,18 +28,22 @@ const Service = ({ title, img }) => {
           {'\n\n'}• помогут Вам раскрыть и реализовать собственный потенциал{'\n\n'}• дадут необходимую мотивацию для
           достижения Вами сформулированных целей в жизни и работе
         </Text>
-        <MainButton title='Выбрать специалиста' myStyle={{ marginBottom: 15 }} />
+        <MainButton title='Выбрать специалиста' />
+        <View style={{ height: 15 }} />
       </View>
     </View>
   )
 }
 
-const styles = StyleSheet.create({
+const { ids, styles } = StyleSheet.create({
   box: {
     marginBottom: 15,
     backgroundColor: '#fff',
     borderRadius: 12,
     overflow: 'hidden',
+    '@media (min-width: 800px)': {
+      maxWidth: '23%',
+    },
   },
   image: {
     width: '100%',
@@ -45,7 +52,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  text: {
+  head: {
     color: '#fff',
     fontSize: 48,
     fontWeight: '400',
@@ -54,6 +61,9 @@ const styles = StyleSheet.create({
     textShadowColor: 'rgba(0, 0, 0, 0.75)',
     textShadowOffset: { width: -1, height: 1 },
     textShadowRadius: 10,
+    '@media (min-width: 800px)': {
+      fontSize: 25,
+    },
   },
 })
 
