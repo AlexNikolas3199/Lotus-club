@@ -34,7 +34,7 @@ const Home = ({ navigation }) => {
           title='Зарегистрироваться'
           myStyle={width > 800 && { backgroundColor: 'transparent', borderColor: '#fff', borderRadius: 50 }}
           myTextStyle={width > 800 && { color: '#fff' }}
-          onPress={() => navigation.navigate('Profile')}
+          onPress={() => navigation.navigate('Auth')}
         />
       </View>
     </ScrollView>

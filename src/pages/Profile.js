@@ -1,26 +1,41 @@
-import { ScrollView, StyleSheet, Text, View } from 'react-native'
+import { useQuery } from '@apollo/client'
+import { RefreshControl, ScrollView, StyleSheet, Text, View } from 'react-native'
 import MainButton from '../components/Main/mainButton'
 import Trening from '../components/Trening'
+import { ME } from '../gql/sign/query'
+import LoadingIndicator from '../components/LoadingIndicator'
 
 const Profile = ({ navigation }) => {
+  const { data, loading, refetch } = useQuery(ME, { fetchPolicy: 'network-only' })
   return (
-    <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{ flexGrow: 1 }} style={styles.main}>
-      <View style={styles.profilewrapper}>
-        <View style={styles.icon} />
-        <Text style={styles.fio}>Алеша Николаев</Text>
-      </View>
-      <MainButton title='Повысть рейтинг' onPress={() => navigation.navigate('Home')} />
-      <View style={styles.trenings}>
-        <Trening />
-        <Trening />
-      </View>
-      <MainButton title='Задать вопрос' onPress={() => navigation.navigate('Home')} />
-      <View style={styles.appointment}>
-        <Text style={styles.h}>Ближайшее свидание</Text>
-        <Text style={styles.date}>Будет 11.08.2022</Text>
-      </View>
-      <MainButton title='Услуги' onPress={() => navigation.navigate('Home')} />
-      <View style={{ height: 7.5 }} />
+    <ScrollView
+      refreshControl={<RefreshControl refreshing={loading} onRefresh={refetch} />}
+      showsVerticalScrollIndicator={false}
+      contentContainerStyle={{ flexGrow: 1 }}
+      style={styles.main}
+    >
+      {loading ? (
+        <LoadingIndicator />
+      ) : (
+        <>
+          <View style={styles.profilewrapper}>
+            <View style={styles.icon} />
+            <Text style={styles.fio}>{data?.me?.name + ' ' + data?.me?.surname}</Text>
+          </View>
+          <MainButton title='Повысть рейтинг' onPress={() => navigation.navigate('Home')} />
+          <View style={styles.trenings}>
+            <Trening />
+            <Trening />
+          </View>
+          <MainButton title='Задать вопрос' onPress={() => navigation.navigate('Home')} />
+          <View style={styles.appointment}>
+            <Text style={styles.h}>Ближайшее свидание</Text>
+            <Text style={styles.date}>Будет 11.08.2022</Text>
+          </View>
+          <MainButton title='Услуги' onPress={() => navigation.navigate('Home')} />
+          <View style={{ height: 7.5 }} />
+        </>
+      )}
     </ScrollView>
   )
 }

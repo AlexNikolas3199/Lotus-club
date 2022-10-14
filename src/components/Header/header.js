@@ -26,7 +26,7 @@ const Header = () => {
 const { ids, styles } = StyleSheet.create({
   header: {
     // paddingTop: 5,
-    marginBottom: 23,
+    marginBottom: 15,
     flexGrow: 0,
     flexShrink: 0,
     '@media (min-width: 800px)': {

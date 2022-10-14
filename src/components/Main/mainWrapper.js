@@ -12,7 +12,7 @@ const MainWrapper = ({ children }) => {
 const { ids, styles } = StyleSheet.create({
   box: {
     flex: 1,
-    paddingTop: 48,
+    paddingTop: 15,
     '@media (min-width: 800px)': {
       paddingTop: 0,
     },
