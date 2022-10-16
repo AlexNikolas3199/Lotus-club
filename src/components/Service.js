@@ -3,30 +3,25 @@ import { ImageBackground, Text, TouchableOpacity, View } from 'react-native'
 import MainButton from './Main/mainButton'
 import StyleSheet from 'react-native-media-query'
 
-const Service = ({ title, img }) => {
+const Service = ({ item, img }) => {
   const [isClick, setIsClick] = useState(false)
   return (
     <View dataSet={{ media: ids.box }} style={styles.box}>
       <TouchableOpacity activeOpacity={0.5} onPress={() => setIsClick(!isClick)}>
         <ImageBackground source={img} resizeMode='cover' borderRadius={12} style={styles.image}>
           <Text dataSet={{ media: ids.head }} style={styles.head}>
-            {title}
+            {item.title}
           </Text>
         </ImageBackground>
       </TouchableOpacity>
       <View style={{ height: isClick ? 'auto' : 0, margin: 0, paddingHorizontal: 15 }}>
         <Text style={{ paddingTop: 15, paddingBottom: 7.5 }}>
-          Работа над собой, своим сознанием и внутренним миром невозможна без консультаций и тренингов с психологами и
-          коучами.{'\n\n'}Наши специалисты обладают высоким уровнем профессионализма, имеют необходимые для работы
-          личные качества — эмпатия, эмоциональная устойчивость, тактичность, развитый общий и эмоциональный интеллект и
-          желание помочь каждому клиенту.{'\n\n'}Наши психологи:{'\n\n'}• проведут анализ Вашего психологического
-          состояния и психологическую диагностику{'\n\n'}• окажут психологическую помощь по разрешению внутриличностных
-          проблем{'\n\n'}• помогут Вам обрести гармонию с собой и окружающим миром{'\n\n'}Наши коучи:{'\n\n'}• помогут
-          найти решение проблем и направление, в котором Вам необходимо двигаться{'\n\n'}• посодействуют повышению Ваших
-          результативности в достижении целей, эффективности и качества жизни клиента в любой её сфере (личностное
-          развитие, карьера, финансы, отношения){'\n\n'}• дадут возможность Вам придти к самостоятельным умозаключениям
-          {'\n\n'}• помогут Вам раскрыть и реализовать собственный потенциал{'\n\n'}• дадут необходимую мотивацию для
-          достижения Вами сформулированных целей в жизни и работе
+          {'Дата: ' +
+            new Date(item.date).toLocaleDateString() +
+            '\n\nЛектор: ' +
+            item.lektor +
+            '\n\n' +
+            item.description}
         </Text>
         <MainButton title='Выбрать специалиста' />
         <View style={{ height: 15 }} />

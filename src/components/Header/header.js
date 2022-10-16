@@ -1,10 +1,22 @@
 import { ScrollView, View } from 'react-native'
 import HeaderButton from './headerButton'
-import { useNavigation } from '@react-navigation/native'
+import { useNavigation, useNavigationState } from '@react-navigation/native'
 import StyleSheet from 'react-native-media-query'
 
 const Header = () => {
   const navigation = useNavigation()
+  const state = useNavigationState((state) => state)
+  console.log(state)
+  const name = state?.routes[state?.routes?.length - 1]?.name
+  if (
+    name == undefined ||
+    name == 'Home' ||
+    name == 'Auth' ||
+    name == 'Сonfirmation' ||
+    name == 'CompleteSignUp' ||
+    name == 'Loader'
+  )
+    return null
   return (
     <ScrollView
       horizontal
@@ -14,7 +26,6 @@ const Header = () => {
       dataSet={{ media: ids.header }}
     >
       <View style={{ width: 12 }} />
-      <HeaderButton title='Главная' onPress={() => navigation.navigate('Home')} />
       <HeaderButton title='Личный кабинет' onPress={() => navigation.navigate('Profile')} />
       <HeaderButton title='Услуги' onPress={() => navigation.navigate('Services')} />
       <HeaderButton title='Специалисты' onPress={() => navigation.navigate('Specialists')} />

@@ -12,7 +12,7 @@ const CompleteSignUp = ({ navigation }) => {
   const onClick = () => {
     if (user.name && user.surname && user.email) {
       completeSignUp({
-        variables: { data: user },
+        variables: { data: { name: user.name.trim(), surname: user.surname.trim(), email: user.email.trim() } },
         onCompleted: () => navigation.reset({ index: 0, routes: [{ name: 'Profile' }] }),
         onError: (e) => {
           console.log(e.message)
@@ -53,8 +53,11 @@ const styles = StyleSheet.create({
   },
   input: {
     width: '100%',
-    borderBottomWidth: 1,
+    paddingVertical: 7.5,
+    borderWidth: 2,
+    borderRadius: 8,
     textAlign: 'center',
+    marginTop: 7.5,
     marginBottom: 15,
   },
   codeWrap: { flexGrow: 1, alignItems: 'center', justifyContent: 'center' },

@@ -5,6 +5,7 @@ import { StatusBar } from 'react-native'
 import Header from './src/components/Header/header'
 import MainWrapper from './src/components/Main/mainWrapper'
 import Home from './src/pages/Home'
+import Loader from './src/pages/Loader'
 import Profile from './src/pages/Profile'
 import Services from './src/pages/Services'
 import Auth from './src/pages/sign/auth'
@@ -14,6 +15,7 @@ import Specialists from './src/pages/Specialists'
 import client from './src/utils/apollo'
 
 const Stack = createNativeStackNavigator()
+
 export default function App() {
   return (
     <ApolloProvider client={client}>
@@ -21,6 +23,7 @@ export default function App() {
         <MainWrapper>
           <Header />
           <Stack.Navigator screenOptions={{ headerShown: false }}>
+            <Stack.Screen name='Loader' component={Loader} />
             <Stack.Screen name='Home' component={Home} />
             <Stack.Screen name='Profile' component={Profile} />
             <Stack.Screen name='Services' component={Services} />

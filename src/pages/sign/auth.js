@@ -14,7 +14,7 @@ const Auth = ({ navigation }) => {
   const onClick = () => {
     if (tel.length > 10) {
       sign({
-        variables: { data: { tel } },
+        variables: { data: { tel: tel.trim() } },
         onCompleted: () => navigation.navigate('Сonfirmation', { tel }),
         onError: (e) => console.log(e.message),
       })
@@ -54,7 +54,9 @@ const { ids, styles } = StyleSheet.create({
   text: { marginTop: 15, color: 'gray' },
   input: {
     width: '100%',
-    borderBottomWidth: 1,
+    paddingVertical: 7.5,
+    borderWidth: 2,
+    borderRadius: 8,
     textAlign: 'center',
   },
 })

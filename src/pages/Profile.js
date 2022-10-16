@@ -4,6 +4,7 @@ import MainButton from '../components/Main/mainButton'
 import Trening from '../components/Trening'
 import { ME } from '../gql/sign/query'
 import LoadingIndicator from '../components/LoadingIndicator'
+import ProfileInfo from '../components/Profile/ProfileInfo'
 
 const Profile = ({ navigation }) => {
   const { data, loading, refetch } = useQuery(ME, { fetchPolicy: 'network-only' })
@@ -18,21 +19,18 @@ const Profile = ({ navigation }) => {
         <LoadingIndicator />
       ) : (
         <>
-          <View style={styles.profilewrapper}>
-            <View style={styles.icon} />
-            <Text style={styles.fio}>{data?.me?.name + ' ' + data?.me?.surname}</Text>
-          </View>
-          <MainButton title='Повысть рейтинг' onPress={() => navigation.navigate('Home')} />
+          <ProfileInfo nav={navigation} me={data?.me} />
+          <MainButton title='Повысть рейтинг' onPress={() => navigation.navigate('Services')} />
           <View style={styles.trenings}>
             <Trening />
             <Trening />
           </View>
-          <MainButton title='Задать вопрос' onPress={() => navigation.navigate('Home')} />
+          <MainButton title='Задать вопрос' onPress={() => navigation.navigate('Services')} />
           <View style={styles.appointment}>
             <Text style={styles.h}>Ближайшее свидание</Text>
             <Text style={styles.date}>Будет 11.08.2022</Text>
           </View>
-          <MainButton title='Услуги' onPress={() => navigation.navigate('Home')} />
+          <MainButton title='Услуги' onPress={() => navigation.navigate('Services')} />
           <View style={{ height: 7.5 }} />
         </>
       )}
@@ -48,18 +46,6 @@ const styles = StyleSheet.create({
     marginBottom: 35,
     paddingHorizontal: 15,
   },
-  profilewrapper: {
-    backgroundColor: '#EFEFEF',
-    borderRadius: 12,
-    flexDirection: 'row',
-    alignItems: 'center',
-    width: '100%',
-    overflow: 'hidden',
-    marginTop: 15,
-    marginBottom: 7.5,
-  },
-  icon: { width: 60, height: 60, borderRadius: 12, backgroundColor: '#D9D9D9' },
-  fio: { fontSize: 20, marginLeft: 16 },
   trenings: {
     width: '100%',
   },
