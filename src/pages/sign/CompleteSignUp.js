@@ -3,7 +3,7 @@ import { useState } from 'react'
 import { Text, TextInput, View, StyleSheet, Alert } from 'react-native'
 import DarkLoadingIndicator from '../../components/DarkLoadingIndicator'
 import MainButton from '../../components/Main/mainButton'
-import { COMPLETE_SIGN_UP } from '../../gql/user/mutation'
+import { COMPLETE_SIGN_UP } from '../../gql/sign/mutation'
 
 const CompleteSignUp = ({ navigation }) => {
   const [completeSignUp, { loading }] = useMutation(COMPLETE_SIGN_UP)
@@ -31,11 +31,7 @@ const CompleteSignUp = ({ navigation }) => {
         <Text>Фамилия</Text>
         <TextInput style={styles.input} onChangeText={(e) => setUser({ ...user, surname: e })} />
         <Text>Почта</Text>
-        <TextInput
-          style={styles.input}
-          keyboardType='email-address'
-          onChangeText={(e) => setUser({ ...user, email: e })}
-        />
+        <TextInput style={styles.input} keyboardType='email-address' onChangeText={(e) => setUser({ ...user, email: e })} />
       </View>
       <MainButton myStyle={{ marginBottom: 15 }} onPress={onClick} title='Сохранить' />
     </View>
@@ -47,7 +43,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     borderRadius: 12,
     marginHorizontal: 15,
-    marginBottom: 35,
+    marginBottom: 15,
     paddingHorizontal: 15,
     flexGrow: 1,
   },

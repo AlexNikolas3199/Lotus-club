@@ -4,12 +4,7 @@ import StyleSheet from 'react-native-media-query'
 const MainButton = ({ title, onPress, myStyle, myTextStyle }) => {
   return (
     <View dataSet={{ media: ids.buttonWrapper }} style={styles.buttonWrapper}>
-      <TouchableOpacity
-        dataSet={{ media: ids.button }}
-        activeOpacity={0.4}
-        style={[styles.button, myStyle]}
-        onPress={onPress}
-      >
+      <TouchableOpacity dataSet={{ media: ids.button }} activeOpacity={0.4} style={[styles.button, myStyle]} onPress={onPress}>
         <Text style={{ ...styles.buttonText, ...myTextStyle }} dataSet={{ media: ids.buttonText }}>
           {title}
         </Text>
@@ -30,9 +25,6 @@ const { ids, styles } = StyleSheet.create({
     marginVertical: 7.5,
     paddingVertical: 10,
     paddingHorizontal: 40,
-    alignItems: 'center',
-    flexDirection: 'row',
-    justifyContent: 'center',
     borderColor: '#313131',
     borderWidth: 2,
     borderRadius: 10,

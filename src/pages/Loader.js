@@ -8,7 +8,6 @@ const Loader = ({ navigation }) => {
   }
   getToken()
   const checkIsFirstStart = () => {
-    console.log(token)
     if (!token) navigation.replace('Home')
     else {
       navigation.replace('Profile')
@@ -30,7 +29,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     borderRadius: 12,
     marginHorizontal: 15,
-    marginBottom: 35,
+    marginBottom: 15,
     paddingHorizontal: 15,
   },
   imageBack: {

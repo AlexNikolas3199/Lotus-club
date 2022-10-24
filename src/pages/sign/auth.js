@@ -43,7 +43,7 @@ const { ids, styles } = StyleSheet.create({
     backgroundColor: '#fff',
     borderRadius: 12,
     marginHorizontal: 15,
-    marginBottom: 35,
+    marginBottom: 15,
     paddingHorizontal: 15,
     '@media (min-width: 800px)': {
       backgroundColor: 'transparent',

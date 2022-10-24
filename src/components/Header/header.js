@@ -4,19 +4,9 @@ import { useNavigation, useNavigationState } from '@react-navigation/native'
 import StyleSheet from 'react-native-media-query'
 
 const Header = () => {
-  const navigation = useNavigation()
   const state = useNavigationState((state) => state)
-  console.log(state)
   const name = state?.routes[state?.routes?.length - 1]?.name
-  if (
-    name == undefined ||
-    name == 'Home' ||
-    name == 'Auth' ||
-    name == 'Сonfirmation' ||
-    name == 'CompleteSignUp' ||
-    name == 'Loader'
-  )
-    return null
+  if (name == undefined || name == 'Home' || name == 'Auth' || name == 'Сonfirmation' || name == 'CompleteSignUp' || name == 'Loader') return null
   return (
     <ScrollView
       horizontal
@@ -26,9 +16,10 @@ const Header = () => {
       dataSet={{ media: ids.header }}
     >
       <View style={{ width: 12 }} />
-      <HeaderButton title='Личный кабинет' onPress={() => navigation.navigate('Profile')} />
-      <HeaderButton title='Услуги' onPress={() => navigation.navigate('Services')} />
-      <HeaderButton title='Специалисты' onPress={() => navigation.navigate('Specialists')} />
+      <HeaderButton name={name} title='Личный кабинет' screen='Profile' />
+      <HeaderButton name={name} title='Трениги' screen='Training' />
+      <HeaderButton name={name} title='Услуги' screen='Services' />
+      <HeaderButton name={name} title='Специалисты' screen='Specialists' />
       <View style={{ width: 12 }} />
     </ScrollView>
   )
@@ -36,7 +27,6 @@ const Header = () => {
 
 const { ids, styles } = StyleSheet.create({
   header: {
-    // paddingTop: 5,
     marginBottom: 15,
     flexGrow: 0,
     flexShrink: 0,

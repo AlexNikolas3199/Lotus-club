@@ -30,7 +30,7 @@ const ProfileInfo = ({ nav, me }) => {
         <Text style={styles.fio}>{me?.name + ' ' + me?.surname}</Text>
         <ThreePoints />
       </TouchableOpacity>
-      <Modal onBackdropPress={toggle} isVisible={isVisible} backdropOpacity={0.5} useNativeDriver={true}>
+      <Modal onBackdropPress={toggle} onBackButtonPress={toggle} isVisible={isVisible} backdropOpacity={0.5} useNativeDriver={true}>
         <View style={styles.white}>
           <View style={styles.profilewrapper}>
             <View style={styles.icon} />
@@ -39,8 +39,9 @@ const ProfileInfo = ({ nav, me }) => {
               <Text style={{ ...styles.fio, flexGrow: 0 }}>{me?.email}</Text>
             </View>
           </View>
+          <MainButton title='История' onPress={toggle} />
+          <MainButton title='Поддержка' onPress={toggle} />
           <MainButton title='Выйти' myStyle={{ borderColor: 'red' }} myTextStyle={{ color: 'red' }} onPress={exit} />
-          <MainButton title='Назад' onPress={toggle} />
         </View>
       </Modal>
     </>

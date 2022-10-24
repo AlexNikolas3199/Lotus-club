@@ -13,3 +13,8 @@ export const VERIFY = gql`
     }
   }
 `
+export const COMPLETE_SIGN_UP = gql`
+  mutation ($data: ProfileInput!) {
+    completeSignUp(data: $data)
+  }
+`

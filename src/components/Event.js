@@ -1,17 +1,21 @@
 import { StyleSheet, Text, View } from 'react-native'
+import TodayDate from './TodayDate'
 
-const Trening = () => {
+const Event = ({ busy }) => {
+  const event = busy.event
   return (
-    <View style={styles.trening}>
-      <Text style={styles.h}>Тренинг 1 - я и мое отражение</Text>
-      <Text style={styles.text}>Прокачать свою самооценку проработать пробелы.</Text>
-      <Text style={styles.date}>Будет 20.10.2022</Text>
+    <View style={styles.event}>
+      <Text style={styles.h}>{event.title}</Text>
+      <Text numberOfLines={2} style={styles.text}>
+        {event.description}
+      </Text>
+      <Text style={styles.date}>{TodayDate(new Date(event.date))}</Text>
     </View>
   )
 }
 
 const styles = StyleSheet.create({
-  trening: {
+  event: {
     backgroundColor: '#EFEFEF',
     padding: 15,
     marginVertical: 7.5,
@@ -33,4 +37,4 @@ const styles = StyleSheet.create({
     letterSpacing: 1.2,
   },
 })
-export default Trening
+export default Event

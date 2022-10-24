@@ -6,7 +6,7 @@ import CodeFieldWrap from '../../components/CodeFieldWrap'
 import DarkLoadingIndicator from '../../components/DarkLoadingIndicator'
 import MainButton from '../../components/Main/mainButton'
 import { VERIFY } from '../../gql/sign/mutation'
-import { FIND_USER_ISFULLPROFILE } from '../../gql/user/query'
+import { FIND_USER_ISFULLPROFILE } from '../../gql/sign/query'
 
 const Confirmation = ({ navigation, route }) => {
   const tel = route.params.tel
@@ -55,7 +55,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     borderRadius: 12,
     marginHorizontal: 15,
-    marginBottom: 35,
+    marginBottom: 15,
     paddingHorizontal: 15,
     flexGrow: 1,
   },

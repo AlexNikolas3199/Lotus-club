@@ -1,5 +1,5 @@
 import { useLazyQuery, useMutation, useQuery } from '@apollo/client'
-import { Alert, Dimensions, RefreshControl, ScrollView, StyleSheet, View } from 'react-native'
+import { Alert, Dimensions, RefreshControl, ScrollView, StyleSheet } from 'react-native'
 import DarkLoadingIndicator from '../components/DarkLoadingIndicator'
 import LoadingIndicator from '../components/LoadingIndicator'
 import Service from '../components/Service'
@@ -9,11 +9,11 @@ import { MEID } from '../gql/sign/query'
 import client from '../utils/apollo'
 const { width } = Dimensions.get('window')
 
-const Services = ({ navigation }) => {
+const Training = ({ navigation }) => {
   const { data, loading, refetch } = useQuery(FIND_MANY_EVENT, {
     fetchPolicy: 'network-only',
     variables: {
-      where: { type: { equals: 'SERVICE' } },
+      where: { type: { equals: 'TRAINING' } },
     },
   })
 
@@ -83,4 +83,4 @@ const styles = StyleSheet.create({
     marginHorizontal: 15,
   },
 })
-export default Services
+export default Training

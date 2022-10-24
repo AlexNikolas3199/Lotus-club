@@ -1,10 +1,17 @@
+import { useNavigation } from '@react-navigation/native'
 import { Text, TouchableOpacity } from 'react-native'
 import StyleSheet from 'react-native-media-query'
 
-const HeaderButton = ({ title, onPress }) => {
+const HeaderButton = ({ title, screen, name }) => {
+  const navigation = useNavigation()
+
   return (
-    <TouchableOpacity dataSet={{ media: ids.button }} style={styles.button} onPress={onPress}>
-      <Text style={styles.text}>{title}</Text>
+    <TouchableOpacity
+      dataSet={{ media: ids.button }}
+      style={[styles.button, { backgroundColor: name == screen ? '#fff' : 'transparent' }]}
+      onPress={() => navigation.navigate(screen)}
+    >
+      <Text style={[styles.text, { color: name == screen ? '#441763' : '#fff' }]}>{title}</Text>
     </TouchableOpacity>
   )
 }
