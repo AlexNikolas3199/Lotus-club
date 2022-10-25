@@ -1,26 +1,32 @@
 import { useState } from 'react'
 import { Dimensions, Image, ScrollView, Text, View } from 'react-native'
 import StyleSheet from 'react-native-media-query'
-import MainButton from '../components/Main/mainButton'
+import MainButton from '../../components/Main/mainButton'
 
 const Home = ({ navigation }) => {
   const [width, setwidth] = useState(Dimensions.get('window').width)
   Dimensions.addEventListener('change', (e) => setwidth(e.window.width))
 
   return (
-    <ScrollView showsVerticalScrollIndicator={width > 800 ? true : false} contentContainerStyle={{ flexGrow: 1, alignItems: 'center' }} dataSet={{ media: ids.main }} style={styles.main}>
+    <ScrollView
+      showsVerticalScrollIndicator={width > 800 ? true : false}
+      contentContainerStyle={{ flexGrow: 1, alignItems: 'center' }}
+      dataSet={{ media: ids.main }}
+      style={styles.main}
+    >
       {width > 800 ? (
         <>
           <Text style={styles.hello}>ДОБРО ПОЖАЛОВАТЬ В LOTUS CLUB!</Text>
-          <Image style={[styles.img, { height: undefined, maxWidth: 640 }]} source={require('../img/lotusweb.png')} />
+          <Image style={[styles.img, { height: undefined, maxWidth: 640 }]} source={require('../../img/lotusweb.png')} />
         </>
       ) : (
-        <Image style={[styles.img, { height: undefined }]} source={require('../img/lotus.png')} />
+        <Image style={[styles.img, { height: undefined }]} source={require('../../img/lotus.png')} />
       )}
       <Text style={styles.text} dataSet={{ media: ids.text }}>
-        Площадка для новых знакомств и выстраивания гармоничных и серьезных отношений между людьми, которым важен индивидуальный подход и профессионализм.{'\n\n'}Место качественной организации
-        мероприятий командой профессионалов, которая возьмёт на себя все технические моменты.{'\n\n'}Сообщество близких по духу деловых людей, которые ориентированы на личностное развитие и ценят
-        важность открытого общения друг с другом.{'\n\n'}
+        Площадка для новых знакомств и выстраивания гармоничных и серьезных отношений между людьми, которым важен индивидуальный подход и
+        профессионализм.{'\n\n'}Место качественной организации мероприятий командой профессионалов, которая возьмёт на себя все технические моменты.
+        {'\n\n'}Сообщество близких по духу деловых людей, которые ориентированы на личностное развитие и ценят важность открытого общения друг с
+        другом.{'\n\n'}
         Пространство для получения новой информации и изменения себя, своего образа, мышления и восприятия.
       </Text>
       <View style={styles.buttonWrapper}>

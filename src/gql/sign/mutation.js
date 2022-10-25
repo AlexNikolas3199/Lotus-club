@@ -18,3 +18,8 @@ export const COMPLETE_SIGN_UP = gql`
     completeSignUp(data: $data)
   }
 `
+export const EMAIL_SEND = gql`
+  mutation ($data: EmailSendInput!) {
+    emailSend(data: $data)
+  }
+`

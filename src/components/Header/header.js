@@ -1,6 +1,6 @@
 import { ScrollView, View } from 'react-native'
 import HeaderButton from './headerButton'
-import { useNavigation, useNavigationState } from '@react-navigation/native'
+import { useNavigationState } from '@react-navigation/native'
 import StyleSheet from 'react-native-media-query'
 
 const Header = () => {
@@ -19,7 +19,6 @@ const Header = () => {
       <HeaderButton name={name} title='Личный кабинет' screen='Profile' />
       <HeaderButton name={name} title='Трениги' screen='Training' />
       <HeaderButton name={name} title='Услуги' screen='Services' />
-      <HeaderButton name={name} title='Специалисты' screen='Specialists' />
       <View style={{ width: 12 }} />
     </ScrollView>
   )

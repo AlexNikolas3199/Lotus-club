@@ -1,7 +1,7 @@
 import { useMutation } from '@apollo/client'
 import { useState } from 'react'
 import { Text, TextInput, View, StyleSheet, Alert } from 'react-native'
-import DarkLoadingIndicator from '../../components/DarkLoadingIndicator'
+import DarkLoadingIndicator from '../../components/Loaders/DarkLoadingIndicator'
 import MainButton from '../../components/Main/mainButton'
 import { COMPLETE_SIGN_UP } from '../../gql/sign/mutation'
 

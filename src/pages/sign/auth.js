@@ -4,7 +4,7 @@ import MainButton from '../../components/Main/mainButton'
 import StyleSheet from 'react-native-media-query'
 import { AUTH } from '../../gql/sign/mutation'
 import { useMutation } from '@apollo/client'
-import DarkLoadingIndicator from '../../components/DarkLoadingIndicator'
+import DarkLoadingIndicator from '../../components/Loaders/DarkLoadingIndicator'
 
 const Auth = ({ navigation }) => {
   const [sign, { loading }] = useMutation(AUTH)

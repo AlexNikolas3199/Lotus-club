@@ -1,16 +1,18 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { useNavigation } from '@react-navigation/native'
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import TodayDate from './TodayDate'
 
-const Event = ({ busy }) => {
+const Event = ({ busy, isPass }) => {
+  const nav = useNavigation()
   const event = busy.event
   return (
-    <View style={styles.event}>
+    <TouchableOpacity onPress={() => nav.navigate('MyEvent', { busy, isPass })} style={styles.event}>
       <Text style={styles.h}>{event.title}</Text>
       <Text numberOfLines={2} style={styles.text}>
         {event.description}
       </Text>
       <Text style={styles.date}>{TodayDate(new Date(event.date))}</Text>
-    </View>
+    </TouchableOpacity>
   )
 }
 

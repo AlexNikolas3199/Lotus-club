@@ -7,3 +7,10 @@ export const CREATE_ONE_BUSY = gql`
     }
   }
 `
+export const DELETE_ONE_BUSY = gql`
+  mutation ($where: BusyWhereUniqueInput!) {
+    deleteOneBusy(where: $where) {
+      id
+    }
+  }
+`

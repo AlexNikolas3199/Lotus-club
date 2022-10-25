@@ -4,18 +4,19 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import { StatusBar } from 'react-native'
 import Header from './src/components/Header/header'
 import MainWrapper from './src/components/Main/mainWrapper'
-import Trening from './src/components/Event'
-import Home from './src/pages/Home'
-import Loader from './src/pages/Loader'
-import Profile from './src/pages/Profile'
+import Home from './src/pages/Begin/Home'
+import Loader from './src/pages/Begin/Loader'
+import Profile from './src/pages/Profile/Profile'
 import Services from './src/pages/Services'
 import Auth from './src/pages/sign/auth'
 import CompleteSignUp from './src/pages/sign/CompleteSignUp'
 import Confirmation from './src/pages/sign/confirmation'
-import Specialists from './src/pages/Specialists'
 import Training from './src/pages/Training'
 import client from './src/utils/apollo'
 import AboutLektor from './src/pages/AboutLektor'
+import History from './src/pages/Profile/History'
+import MyEvent from './src/components/Profile/MyEvent'
+import SendEmail from './src/pages/Profile/SendEmail'
 
 const Stack = createNativeStackNavigator()
 
@@ -29,10 +30,12 @@ export default function App() {
             <Stack.Screen name='Loader' component={Loader} />
             <Stack.Screen name='Home' component={Home} />
             <Stack.Screen name='Profile' component={Profile} />
+            <Stack.Screen name='History' component={History} />
+            <Stack.Screen name='MyEvent' component={MyEvent} />
+            <Stack.Screen name='SendEmail' component={SendEmail} />
             <Stack.Screen name='Training' component={Training} />
             <Stack.Screen name='AboutLektor' component={AboutLektor} />
             <Stack.Screen name='Services' component={Services} />
-            <Stack.Screen name='Specialists' component={Specialists} />
             <Stack.Screen name='Auth' component={Auth} />
             <Stack.Screen name='Сonfirmation' component={Confirmation} />
             <Stack.Screen name='CompleteSignUp' component={CompleteSignUp} />

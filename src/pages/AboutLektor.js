@@ -10,10 +10,9 @@ const AboutLektor = ({ navigation, route }) => {
           <Image style={styles.icon} source={{ uri: lektor.avatar }} />
           <Text style={styles.fio}>{lektor.name + ' ' + lektor.surname}</Text>
         </View>
-        <Text style={{ paddingBottom: 15 }}>{lektor.description}</Text>
-        <View style={{ height: 60 }} />
+        <Text style={styles.desc}>{lektor.description}</Text>
       </ScrollView>
-      <View style={{ position: 'absolute', paddingBottom: 7.5, bottom: 15, paddingHorizontal: 30, width: '100%' }}>
+      <View style={styles.button}>
         <MainButton title='Понятно' onPress={() => navigation.goBack()} />
       </View>
     </>
@@ -38,8 +37,23 @@ const styles = StyleSheet.create({
     marginTop: 15,
     marginBottom: 15,
   },
-  icon: { width: 60, height: 60, borderRadius: 12, backgroundColor: '#D9D9D9' },
+  desc: {
+    paddingBottom: 75,
+  },
+  icon: {
+    width: 60,
+    height: 60,
+    borderRadius: 12,
+    backgroundColor: '#D9D9D9',
+  },
   fio: { fontSize: 20, marginLeft: 16 },
+  button: {
+    position: 'absolute',
+    paddingBottom: 7.5,
+    bottom: 15,
+    paddingHorizontal: 30,
+    width: '100%',
+  },
 })
 
 export default AboutLektor

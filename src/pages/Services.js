@@ -1,7 +1,7 @@
 import { useLazyQuery, useMutation, useQuery } from '@apollo/client'
 import { Alert, Dimensions, RefreshControl, ScrollView, StyleSheet, View } from 'react-native'
-import DarkLoadingIndicator from '../components/DarkLoadingIndicator'
-import LoadingIndicator from '../components/LoadingIndicator'
+import DarkLoadingIndicator from '../components/Loaders/DarkLoadingIndicator'
+import LoadingIndicator from '../components/Loaders/LoadingIndicator'
 import Service from '../components/Service'
 import { CREATE_ONE_BUSY } from '../gql/events/mutation'
 import { FIND_MANY_EVENT } from '../gql/events/query'
@@ -12,9 +12,7 @@ const { width } = Dimensions.get('window')
 const Services = ({ navigation }) => {
   const { data, loading, refetch } = useQuery(FIND_MANY_EVENT, {
     fetchPolicy: 'network-only',
-    variables: {
-      where: { type: { equals: 'SERVICE' } },
-    },
+    variables: { where: { type: { equals: 'SERVICE' } } },
   })
 
   const [getMe] = useLazyQuery(MEID, { fetchPolicy: 'network-only' })

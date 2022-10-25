@@ -14,6 +14,7 @@ export const ME = gql`
       name
       surname
       email
+      tel
       busy {
         id
         event {
@@ -27,6 +28,7 @@ export const ME = gql`
           name
           surname
           avatar
+          description
         }
       }
     }

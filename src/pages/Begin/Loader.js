@@ -16,7 +16,7 @@ const Loader = ({ navigation }) => {
   setTimeout(checkIsFirstStart, 1000)
   return (
     <View style={styles.wrapper}>
-      <Image style={styles.imageBack} source={require('../img/lotus.png')} />
+      <Image style={styles.imageBack} source={require('../../img/lotus.png')} />
     </View>
   )
 }
