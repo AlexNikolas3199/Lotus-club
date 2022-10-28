@@ -7,16 +7,15 @@ import MainWrapper from './src/components/Main/mainWrapper'
 import Home from './src/pages/Begin/Home'
 import Loader from './src/pages/Begin/Loader'
 import Profile from './src/pages/Profile/Profile'
-import Services from './src/pages/Services'
 import Auth from './src/pages/sign/auth'
 import CompleteSignUp from './src/pages/sign/CompleteSignUp'
 import Confirmation from './src/pages/sign/confirmation'
-import Training from './src/pages/Training'
 import client from './src/utils/apollo'
 import AboutLektor from './src/pages/AboutLektor'
 import History from './src/pages/Profile/History'
 import MyEvent from './src/components/Profile/MyEvent'
 import SendEmail from './src/pages/Profile/SendEmail'
+import Events from './src/pages/Events'
 
 const Stack = createNativeStackNavigator()
 
@@ -33,9 +32,9 @@ export default function App() {
             <Stack.Screen name='History' component={History} />
             <Stack.Screen name='MyEvent' component={MyEvent} />
             <Stack.Screen name='SendEmail' component={SendEmail} />
-            <Stack.Screen name='Training' component={Training} />
+            <Stack.Screen name='Training' component={Events} initialParams={{ type: 'TRAINING' }} />
+            <Stack.Screen name='Services' component={Events} initialParams={{ type: 'SERVICE' }} />
             <Stack.Screen name='AboutLektor' component={AboutLektor} />
-            <Stack.Screen name='Services' component={Services} />
             <Stack.Screen name='Auth' component={Auth} />
             <Stack.Screen name='Сonfirmation' component={Confirmation} />
             <Stack.Screen name='CompleteSignUp' component={CompleteSignUp} />
