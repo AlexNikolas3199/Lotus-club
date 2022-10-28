@@ -67,9 +67,11 @@ const Events = ({ navigation, route }) => {
         <LoadingIndicator />
       ) : (
         <>
-          {data?.findManyEvent.map((item) => (
-            <Service key={item.id} onPress={() => onClick(item.id, item.specialist[0].id)} item={item} />
-          ))}
+          {data?.findManyEvent
+            .filter((a) => new Date(a.date) > Date.now())
+            .map((item) => (
+              <Service key={item.id} onPress={() => onClick(item.id, item.specialist[0].id)} item={item} />
+            ))}
         </>
       )}
     </ScrollView>

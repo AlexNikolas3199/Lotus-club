@@ -19,17 +19,17 @@ const Service = ({ item, onPress }) => {
           </Text>
         </ImageBackground>
       </TouchableOpacity>
-      <View style={{ height: isClick ? 'auto' : 0, margin: 0, paddingHorizontal: 15 }}>
-        <Text style={{ paddingTop: 15 }}>{'Дата: ' + TodayDate(new Date(item.date)) + '\n\n' + item.description}</Text>
+      <View style={{ height: isClick ? 'auto' : 0 }}>
+        <Text style={{ paddingTop: 15, paddingHorizontal: 15 }}>{'Дата: ' + TodayDate(new Date(item.date)) + '\n\n' + item.description}</Text>
         <View style={styles.lektors}>
-          <Text>Лекторы: </Text>
+          <Text style={{ marginLeft: 7.5 }}>Лекторы:</Text>
           {lektors.map((item) => (
             <TouchableOpacity key={item.id} onPress={() => nav.navigate('AboutLektor', { lektor: item })} style={styles.lektor}>
-              <Text>{item.name + ' ' + item.surname}</Text>
+              <Text>{`${item.name} ${item.surname}`}</Text>
             </TouchableOpacity>
           ))}
         </View>
-        <MainButton onPress={onPress} myStyle={{ marginBottom: 15 }} title='Записаться' />
+        <MainButton onPress={onPress} myStyle={{ marginBottom: 15, marginHorizontal: 15 }} title='Записаться' />
       </View>
     </View>
   )
@@ -52,11 +52,12 @@ const { ids, styles } = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  lektors: { flexDirection: 'row', paddingVertical: 7.5, alignItems: 'center', flexWrap: 'wrap' },
+  lektors: { flexDirection: 'row', paddingTop: 7.5, alignItems: 'center', flexWrap: 'wrap', paddingHorizontal: 7.5 },
   lektor: {
+    flexGrow: 1,
+    alignItems: 'center',
     backgroundColor: '#fff',
-    marginVertical: 7.5,
-    marginRight: 15,
+    margin: 7.5,
     paddingVertical: 10,
     paddingHorizontal: 15,
     borderColor: '#313131',

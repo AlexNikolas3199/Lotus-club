@@ -13,7 +13,7 @@ import Confirmation from './src/pages/sign/confirmation'
 import client from './src/utils/apollo'
 import AboutLektor from './src/pages/AboutLektor'
 import History from './src/pages/Profile/History'
-import MyEvent from './src/components/Profile/MyEvent'
+import MyEvent from './src/pages/Profile/MyEvent'
 import SendEmail from './src/pages/Profile/SendEmail'
 import Events from './src/pages/Events'
 
