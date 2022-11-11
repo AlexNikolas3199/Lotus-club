@@ -1,6 +1,6 @@
 import { useMutation } from '@apollo/client'
 import { useState } from 'react'
-import { Text, TextInput, View, StyleSheet, Alert } from 'react-native'
+import { Text, TextInput, View, StyleSheet, Alert, ScrollView } from 'react-native'
 import DarkLoadingIndicator from '../../components/Loaders/DarkLoadingIndicator'
 import MainButton from '../../components/Main/mainButton'
 import { COMPLETE_SIGN_UP } from '../../gql/sign/mutation'
@@ -23,6 +23,7 @@ const CompleteSignUp = ({ navigation }) => {
   }
 
   return (
+    <ScrollView contentContainerStyle={{flexGrow: 1}} keyboardShouldPersistTaps='handled'>
     <View style={styles.main}>
       <DarkLoadingIndicator isVisible={loading} />
       <View style={styles.codeWrap}>
@@ -35,6 +36,7 @@ const CompleteSignUp = ({ navigation }) => {
       </View>
       <MainButton myStyle={{ marginBottom: 15 }} onPress={onClick} title='Сохранить' />
     </View>
+    </ScrollView>
   )
 }
 

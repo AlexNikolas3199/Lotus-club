@@ -1,7 +1,7 @@
 import { ApolloProvider } from '@apollo/client'
 import { NavigationContainer } from '@react-navigation/native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
-import { StatusBar } from 'react-native'
+import { StatusBar, View } from 'react-native'
 import Header from './src/components/Header/header'
 import MainWrapper from './src/components/Main/mainWrapper'
 import Home from './src/pages/Begin/Home'
@@ -23,8 +23,9 @@ const Stack = createNativeStackNavigator()
 export default function App() {
   return (
     <ApolloProvider client={client}>
+      {/* <View style={{paddingVertical:32, flex:1, backgroundColor:"red"}}> */}
       <NavigationContainer theme={{ colors: { background: 'transparent' } }}>
-        <MainWrapper>
+        <MainWrapper >
           <Header />
           <Stack.Navigator screenOptions={{ headerShown: false }}>
             <Stack.Screen name='Loader' component={Loader} />
@@ -42,6 +43,7 @@ export default function App() {
           </Stack.Navigator>
         </MainWrapper>
       </NavigationContainer>
+      {/* </View> */}
       <StatusBar barStyle='light-content' />
     </ApolloProvider>
   )

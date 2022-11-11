@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import { Alert, Text, TextInput, View } from 'react-native'
+import { Alert, ScrollView, Text, TextInput, View } from 'react-native'
 import MainButton from '../../components/Main/mainButton'
 import StyleSheet from 'react-native-media-query'
 import { AUTH } from '../../gql/sign/mutation'
@@ -26,6 +26,7 @@ const Auth = ({ navigation }) => {
   }, [])
 
   return (
+    <ScrollView contentContainerStyle={{flexGrow: 1}} keyboardShouldPersistTaps='handled'>
     <View style={styles.main}>
       <DarkLoadingIndicator isVisible={loading} />
       <View style={styles.codeWrap}>
@@ -34,6 +35,7 @@ const Auth = ({ navigation }) => {
       </View>
       <MainButton myStyle={{ marginBottom: 15 }} title='Войти' onPress={onClick} />
     </View>
+    </ScrollView>
   )
 }
 
