@@ -9,10 +9,10 @@ import { MEID } from '../gql/sign/query'
 import client from '../utils/apollo'
 const { width } = Dimensions.get('window')
 
-const Training = ({ navigation }) => {
+const Events = ({ navigation, route }) => {
   const { data, loading, refetch } = useQuery(FIND_MANY_EVENT, {
     fetchPolicy: 'network-only',
-    variables: { where: { type: { equals: 'TRAINING' } } },
+    variables: { where: { type: { equals: route.params.type } } },
   })
 
   const [getMe] = useLazyQuery(MEID, { fetchPolicy: 'network-only' })
@@ -67,9 +67,11 @@ const Training = ({ navigation }) => {
         <LoadingIndicator />
       ) : (
         <>
-          {data?.findManyEvent.map((item) => (
-            <Service key={item.id} onPress={() => onClick(item.id, item.specialist[0].id)} item={item} />
-          ))}
+          {data?.findManyEvent
+            .filter((a) => new Date(a.date) > Date.now())
+            .map((item) => (
+              <Service key={item.id} onPress={() => onClick(item.id, item.specialist[0].id)} item={item} />
+            ))}
         </>
       )}
     </ScrollView>
@@ -81,4 +83,4 @@ const styles = StyleSheet.create({
     marginHorizontal: 15,
   },
 })
-export default Training
+export default Events

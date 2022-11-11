@@ -8,7 +8,7 @@ import TodayDate from './TodayDate'
 const Service = ({ item, onPress }) => {
   const nav = useNavigation()
   const [isClick, setIsClick] = useState(false)
-  const lektor = item.specialist[0]
+  const lektors = item.specialist
 
   return (
     <View dataSet={{ media: ids.box }} style={styles.box}>
@@ -19,15 +19,17 @@ const Service = ({ item, onPress }) => {
           </Text>
         </ImageBackground>
       </TouchableOpacity>
-      <View style={{ height: isClick ? 'auto' : 0, margin: 0, paddingHorizontal: 15 }}>
-        <Text style={{ paddingTop: 15 }}>{'Дата: ' + TodayDate(new Date(item.date)) + '\n\n' + item.description}</Text>
-        <View style={{ flexDirection: 'row', paddingVertical: 7.5, alignItems: 'center' }}>
-          <Text>Лектор: </Text>
-          <TouchableOpacity onPress={() => nav.navigate('AboutLektor', { lektor })} style={styles.lektor}>
-            <Text>{lektor.name + ' ' + lektor.surname}</Text>
-          </TouchableOpacity>
+      <View style={{ height: isClick ? 'auto' : 0 }}>
+        <Text style={{ paddingTop: 15, paddingHorizontal: 15 }}>{'Дата: ' + TodayDate(new Date(item.date)) + '\n\n' + item.description}</Text>
+        <View style={styles.lektors}>
+          <Text style={{ marginLeft: 7.5 }}>Лекторы:</Text>
+          {lektors.map((item) => (
+            <TouchableOpacity key={item.id} onPress={() => nav.navigate('AboutLektor', { lektor: item })} style={styles.lektor}>
+              <Text>{`${item.name} ${item.surname}`}</Text>
+            </TouchableOpacity>
+          ))}
         </View>
-        <MainButton onPress={onPress} myStyle={{ marginBottom: 15 }} title='Записаться' />
+        <MainButton onPress={onPress} myStyle={{ marginBottom: 15, marginHorizontal: 15 }} title='Записаться' />
       </View>
     </View>
   )
@@ -50,9 +52,12 @@ const { ids, styles } = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
+  lektors: { flexDirection: 'row', paddingTop: 7.5, alignItems: 'center', flexWrap: 'wrap', paddingHorizontal: 7.5 },
   lektor: {
+    flexGrow: 1,
+    alignItems: 'center',
     backgroundColor: '#fff',
-    marginVertical: 7.5,
+    margin: 7.5,
     paddingVertical: 10,
     paddingHorizontal: 15,
     borderColor: '#313131',

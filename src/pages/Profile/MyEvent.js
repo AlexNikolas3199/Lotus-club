@@ -1,16 +1,16 @@
 import React from 'react'
 import { Alert, ImageBackground, ScrollView, Text, TouchableOpacity, View } from 'react-native'
-import MainButton from '../Main/mainButton'
+import MainButton from '../../components/Main/mainButton'
 import StyleSheet from 'react-native-media-query'
-import TodayDate from '../TodayDate'
+import TodayDate from '../../components/TodayDate'
 import { useMutation } from '@apollo/client'
-import DarkLoadingIndicator from '../Loaders/DarkLoadingIndicator'
+import DarkLoadingIndicator from '../../components/Loaders/DarkLoadingIndicator'
 import client from '../../utils/apollo'
 import { DELETE_ONE_BUSY } from '../../gql/events/mutation'
 
 const MyEvent = ({ navigation, route }) => {
   const event = route.params.busy.event
-  const lektor = route.params.busy.lektor
+  const lektors = event.specialist
 
   const [deleteOneBusy, { loading }] = useMutation(DELETE_ONE_BUSY)
   const refreshQueries = async () => await client.refetchQueries({ include: 'active' })
@@ -32,31 +32,33 @@ const MyEvent = ({ navigation, route }) => {
             },
             onError: (e) => console.log(e.message),
           })
-          nav.reset({ index: 0, routes: [{ name: 'Profile' }] })
         },
       },
     ])
   }
 
   return (
-    <ScrollView dataSet={{ media: ids.box }} style={styles.box}>
+    <ScrollView dataSet={{ media: ids.box }} contentContainerStyle={{ flexGrow: 1 }} style={styles.box}>
       <DarkLoadingIndicator isVisible={loading} />
       <ImageBackground source={{ uri: event.image }} resizeMode='cover' borderRadius={12} style={styles.image}>
         <Text dataSet={{ media: ids.head }} style={styles.head}>
           {event.title}
         </Text>
       </ImageBackground>
-      <View style={styles.white}>
-        <Text style={{ paddingVertical: 15 }}>{'Дата: ' + TodayDate(new Date(event.date))}</Text>
-        <Text>{event.description}</Text>
+      <View style={{ flexGrow: 1 }}>
+        <Text style={{ padding: 15, paddingBottom: 7.5 }}>{'Дата: ' + TodayDate(new Date(event.date)) + '\n\n' + event.description}</Text>
         <View style={styles.wrap}>
-          <Text>Лектор: </Text>
-          <TouchableOpacity onPress={() => navigation.navigate('AboutLektor', { lektor })} style={styles.lektor}>
-            <Text>{lektor.name + ' ' + lektor.surname}</Text>
-          </TouchableOpacity>
+          <Text style={{ marginLeft: 7.5 }}>Лекторы:</Text>
+          {lektors.map((item) => (
+            <TouchableOpacity key={item.id} onPress={() => navigation.navigate('AboutLektor', { lektor: item })} style={styles.lektor}>
+              <Text>{`${item.name} ${item.surname}`}</Text>
+            </TouchableOpacity>
+          ))}
         </View>
-        <MainButton onPress={() => navigation.goBack()} title='Назад' />
-        {!route.params.isPass && <MainButton title='Отменить запись' myStyle={styles.exit} myTextStyle={{ color: 'red' }} onPress={exit} />}
+        <View style={{ marginHorizontal: 15, flexGrow: 1, justifyContent: 'flex-end' }}>
+          <MainButton onPress={() => navigation.goBack()} title='Назад' />
+          {!route.params.isPass && <MainButton title='Отменить запись' myStyle={styles.exit} myTextStyle={{ color: 'red' }} onPress={exit} />}
+        </View>
         <View style={{ height: 7.5 }} />
       </View>
     </ScrollView>
@@ -69,7 +71,6 @@ const { ids, styles } = StyleSheet.create({
     marginHorizontal: 15,
     backgroundColor: '#fff',
     borderRadius: 12,
-    overflow: 'hidden',
     '@media (min-width: 800px)': {
       maxWidth: '23%',
     },
@@ -81,18 +82,17 @@ const { ids, styles } = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  white: {
-    margin: 0,
-    paddingHorizontal: 15,
-  },
   wrap: {
     flexDirection: 'row',
-    paddingVertical: 7.5,
+    flexWrap: 'wrap',
+    paddingHorizontal: 7.5,
     alignItems: 'center',
   },
   lektor: {
+    flexGrow: 1,
+    alignItems: 'center',
     backgroundColor: '#fff',
-    marginVertical: 7.5,
+    margin: 7.5,
     paddingVertical: 10,
     paddingHorizontal: 15,
     borderColor: '#313131',

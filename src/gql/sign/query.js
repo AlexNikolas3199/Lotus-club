@@ -23,12 +23,13 @@ export const ME = gql`
           date
           title
           description
-        }
-        lektor {
-          name
-          surname
-          avatar
-          description
+          specialist {
+            id
+            name
+            surname
+            avatar
+            description
+          }
         }
       }
     }

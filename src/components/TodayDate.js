@@ -10,7 +10,7 @@ const TodayDate = (today, noTime = false) => {
   if (dd < 10) dd = '0' + dd
   if (hh < 10) hh = '0' + hh
   if (m < 10) m = '0' + m
-  if (noTime) time = hh + ':' + m
+  if (!noTime) time = hh + ':' + m
   const nowDate = dd + ' ' + mm + ' ' + yyyy + ' ' + time
   return nowDate
 }
