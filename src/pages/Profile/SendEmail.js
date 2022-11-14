@@ -13,7 +13,7 @@ const SendEmail = ({ navigation, route }) => {
   const onClick = () => {
     if (mail.from && mail.text) {
       emailSend({
-        variables: { data: { email: 'hamuske31@gmail.com', from: mail.from.trim(), text: mail.text.trim() } },
+        variables: { data: { email: 'Lotusclub.help@yandex.ru', from: mail.from.trim(), text: mail.text.trim() } },
         onCompleted: () => {
           Alert.alert('Письмо отправлено.', 'Письмо успешно направлено в поддержку.', [
             {
